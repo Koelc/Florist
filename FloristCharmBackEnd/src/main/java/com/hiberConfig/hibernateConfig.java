@@ -1,5 +1,8 @@
 package com.hiberConfig;
 
+
+
+
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -58,6 +61,8 @@ public class hibernateConfig
 	  sb.addAnnotatedClass(Supplier.class);
 	  sb.addAnnotatedClass(Category.class);
 	  sb.addAnnotatedClass(Product.class);
+	  sb.addAnnotatedClass(Orders.class);
+	  sb.addAnnotatedClass(Cart.class);
 	  return sb.buildSessionFactory();
 	 	
 	}
@@ -88,6 +93,20 @@ public class hibernateConfig
 	public UserDaoImpl getUseData(SessionFactory sf)
 	{
 		return new UserDaoImpl(sf);
+	}
+	
+	@Autowired
+	@Bean(name="OrderDaoImpl")
+	public OrdersDaoImpl getOrderData(SessionFactory sf)
+	{
+		return new OrdersDaoImpl(sf);
+		
+	}
+	@Autowired
+	@Bean(name="CartDaoImpl")
+	public CartDaoImpl getCartData(SessionFactory sf)
+	{
+		return new CartDaoImpl(sf);
 	}
 	
 	@Autowired

@@ -3,7 +3,6 @@ package com.model;
 import java.io.Serializable;
 
 import javax.persistence.*;
-
 import org.springframework.stereotype.Component;
 
 @Component

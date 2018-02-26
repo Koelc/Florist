@@ -31,6 +31,9 @@ public class Product implements Serializable
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="cid")
     private Category category;// fields are in object form
+	/*@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="tax")
+    private Category categoryTax;*/
 	@ManyToOne
 	@JoinColumn(name="sid")
 	private Supplier supplier; // fields are in object form

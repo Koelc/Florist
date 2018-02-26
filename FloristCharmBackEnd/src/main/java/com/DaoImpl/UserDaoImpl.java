@@ -2,11 +2,13 @@ package com.DaoImpl;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.Dao.UserDao;
+import com.model.Cart;
 import com.model.Product;
 import com.model.User;
 
@@ -41,7 +43,25 @@ public class UserDaoImpl implements UserDao
 	List<User> list = session.createQuery("from User").list();
 			 session.getTransaction().commit();
 			 return list;
-		 
-	 }
+		  }
+	
+	public User findUserById(String email)
+	{
+		Session session= sessionFactory.openSession();
+		User cr = null;
+		try
+		{
+			session.beginTransaction();
+			cr=session.get(User.class, email);
+			session.getTransaction().commit();
+		}
+		catch(HibernateException ex)
+		{
+			ex.printStackTrace();
+			System.out.println(ex.getMessage());
+			session.getTransaction().rollback();
+		}
+		return cr;
+	}
 
 }

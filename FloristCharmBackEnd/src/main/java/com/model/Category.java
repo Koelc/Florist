@@ -21,6 +21,7 @@ public class Category {
 @Id
 private int cid;
 private String name;
+//private float tax;
 @OneToMany(targetEntity=Product.class,  fetch=FetchType.EAGER, mappedBy="category")
 private Set<Product> products = new HashSet<Product>(0);
 
